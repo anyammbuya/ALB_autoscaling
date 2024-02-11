@@ -1,5 +1,6 @@
 # Autoscaling Group Resource
 resource "aws_autoscaling_group" "project_zeus_ASG" {
+
   name_prefix = "project-zeus-"
   desired_capacity   = 2
   max_size           = 2
@@ -35,4 +36,31 @@ resource "aws_autoscaling_group" "project_zeus_ASG" {
     value               = "zeus"
     propagate_at_launch = true
   }  
+}
+
+# Create Autoscaling policy
+
+resource "aws_autoscaling_policy" "avg_cpu_utilization" {
+
+  name                   = "avg_cpu_utilization"
+
+# Provide a scaling policy type either "SimpleScaling", "StepScaling" or
+# "TargetTrackingScaling". AWS will default to to "SimpleScaling if 
+# this value is not provided
+
+  policy_type = "TargetTrackingScaling"  
+
+  autoscaling_group_name = aws_autoscaling_group.project_zeus_ASG.name
+
+  estimated_instance_warmup = 300  # 300 secs is default anyway
+
+  # CPU Utilization is above 50
+
+  target_tracking_configuration {
+    predefined_metric_specification {
+      predefined_metric_type = "ASGAverageCPUUtilization"
+    }
+    target_value = 50.0
+  }  
+
 }
