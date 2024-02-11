@@ -1,4 +1,4 @@
-# Deploying a secure Two-tier Infrastructure With High Availabilty
+# Deploying a secure Two-tier Infrastructure With High Availability
 
 This is an example Terraform configuration the allows the deployment of a two-tier web architecture on AWS.
 
