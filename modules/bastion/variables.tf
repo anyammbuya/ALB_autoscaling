@@ -6,13 +6,14 @@ variable "instance_type" {
   description = "Type of EC2 instance to use"
   type        = string
 }
-variable "tags" {
-  description = "tags to apply to instances"
-  type        = map(string)
+
+variable "subnet_id_public" {
+  description = "Subnet ID for bastion host"
+  type        = string
 }
 
-variable "security_group_ids" {
-  description = "Security group IDs for EC2 instances"
+variable "security_group_id_bastion" {
+  description = "Security group ID for bastion host"
   type        = list(string)
 }
 
