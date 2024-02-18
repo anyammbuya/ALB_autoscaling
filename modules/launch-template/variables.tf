@@ -16,7 +16,3 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
-variable "key_name"{
-  default       = "mykey.pub"
-
-}

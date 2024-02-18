@@ -23,7 +23,7 @@ resource "aws_launch_template" "project-zeus-LT" {
 
   vpc_security_group_ids = var.security_group_ids
   
-  key_name = var.key_name 
+  //key_name = var.key_name 
   
   user_data = filebase64("${path.module}/webapp.sh")
   
