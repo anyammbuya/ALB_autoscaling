@@ -16,3 +16,8 @@ variable "security_group_ids" {
   type        = list(string)
 }
 
+variable "instance_profile_arn" {
+  description = "arn of the ec2 instance profile"
+  
+}
+
