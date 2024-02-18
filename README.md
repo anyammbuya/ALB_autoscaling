@@ -20,6 +20,8 @@ Route tables
 
 Security group for the load balancer that allows traffic to port 80, and 443 from anywhere
 
+Security group for Bastion host which allows traffic to port 22
+
 Security group for webapp-tier that allows traffic to port 80 from load balancer security group. This security group equally allows traffic to port 80 and 443 from public subnets.
 
 Load balancer and target groups
@@ -27,3 +29,5 @@ Load balancer and target groups
 Launch template
 
 auto scaling group
+
+Bastion Host

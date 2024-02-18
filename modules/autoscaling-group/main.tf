@@ -2,9 +2,9 @@
 resource "aws_autoscaling_group" "project_zeus_ASG" {
 
   name_prefix = "project-zeus-"
-  desired_capacity   = 1
-  max_size           = 3
-  min_size           = 1
+  desired_capacity   = 2
+  max_size           = 4
+  min_size           = 2
   vpc_zone_identifier  = var.subnet_ids
   
   target_group_arns = var.target_group_arns
@@ -48,6 +48,7 @@ resource "aws_autoscaling_group" "project_zeus_ASG" {
 
 # Create Autoscaling policy
 
+/*
 # The policy configures your Auto Scaling group to destroy a member of the 
 # ASG if the EC2 instances in your group use less than 10% CPU over 2 consecutive 
 # evaluation periods of 2 minutes.
@@ -79,9 +80,7 @@ resource "aws_cloudwatch_metric_alarm" "scale_down" {
     AutoScalingGroupName = aws_autoscaling_group.project_zeus_ASG.name
   }
 }
-
-
-/*
+*/
 
 resource "aws_autoscaling_policy" "avg_cpu_utilization" {
 
@@ -107,4 +106,3 @@ resource "aws_autoscaling_policy" "avg_cpu_utilization" {
   }  
 
 }
-*/
