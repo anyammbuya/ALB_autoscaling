@@ -208,14 +208,20 @@ module "alb" {
 
 }
 
+module "zeus_ec2_perms" {
+
+  source = "./modules/ec2-permissions"
+}
 
 module "zeus_launch_template" {
   source = "./modules/launch-template"
 
-  instance_type      = var.instance_type
-  security_group_ids = [module.app_security_group.security_group_id]
-  tags               = var.vpc_tags
+  instance_type            = var.instance_type
+  security_group_ids       = [module.app_security_group.security_group_id]
+  instance_profile_arn     = module.zeus_ec2_perms.instance_profile_arn
+  tags                     = var.vpc_tags
 }
+
 module "zeus_autoscaling_group" {
   source = "./modules/autoscaling-group"
 
@@ -225,3 +231,5 @@ module "zeus_autoscaling_group" {
   launch_template_version = module.zeus_launch_template.launch_template_version
 
 }
+
+

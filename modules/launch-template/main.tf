@@ -28,7 +28,7 @@ resource "aws_launch_template" "project-zeus-LT" {
   user_data = filebase64("${path.module}/webapp.sh")
 
   iam_instance_profile {
-    name = var.instance_profile_arn
+    arn = var.instance_profile_arn
   }
 
   
