@@ -209,17 +209,16 @@ module "alb" {
 }
 
 module "zeus_ec2_perms" {
-
   source = "./modules/ec2-permissions"
 }
 
 module "zeus_launch_template" {
   source = "./modules/launch-template"
 
-  instance_type            = var.instance_type
-  security_group_ids       = [module.app_security_group.security_group_id]
-  instance_profile_arn     = module.zeus_ec2_perms.instance_profile_arn
-  tags                     = var.vpc_tags
+  instance_type        = var.instance_type
+  security_group_ids   = [module.app_security_group.security_group_id]
+  instance_profile_arn = module.zeus_ec2_perms.instance_profile_arn
+  tags                 = var.vpc_tags
 }
 
 module "zeus_autoscaling_group" {
@@ -232,4 +231,22 @@ module "zeus_autoscaling_group" {
 
 }
 
+module "zeus_kms" {
+  source = "./modules/kms"
 
+}
+
+module "zeus_cloudwatch" {
+  source = "./modules/cloudwatch"
+
+  kms_key_id = module.zeus_kms.kms_key_id
+}
+
+module "session-manager-settings" {
+  source = "gazoakley/session-manager-settings/aws"
+
+  cloudwatch_log_group_name     = module.zeus_cloudwatch.cloudwatch_log_group_name
+  cloudwatch_encryption_enabled = true
+  cloudwatch_streaming_enabled  = true
+  kms_key_id                    = module.zeus_kms.kms_key_id
+}

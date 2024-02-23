@@ -1,4 +1,4 @@
-# Deploying a secure Two-tier Infrastructure With High Availability (Includes SSM)
+# Deploying a secure Two-tier Infrastructure With High Availability (Includes SSM and ec2 session logging of kms-encrypted logs to cloudwatch)
 
 This is an example Terraform configuration the allows the deployment of a two-tier web architecture on AWS.
 
@@ -26,6 +26,10 @@ Load balancer and target groups
 
 Launch template
 
-ec2 instance profile with ec2 role containing AmazonSSMManagedInstanceCore policy***
+ec2 instance profile with ec2 role containing policy for actions on ssm, cloudwatch and kms ***
+
+kms key and policy ***
+
+cloudwatch log group ***
 
 auto scaling group
