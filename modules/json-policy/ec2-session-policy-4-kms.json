@@ -6,7 +6,7 @@
             "Sid": "Enable IAM User Permissions",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::058264198774:root"
+                "AWS": "arn:aws:iam::AWS-ACCOUNT-ID:root"
             },
             "Action": "kms:*",
             "Resource": "*"
@@ -15,7 +15,7 @@
             "Sid": "Allow access for Key Administrators",
             "Effect": "Allow",
             "Principal": {
-                "AWS": "arn:aws:iam::058264198774:user/yoshi"
+                "AWS": "arn:aws:iam::AWS-ACCOUNT-ID:user/yoshi"
             },
             "Action": [
                 "kms:Create*",
@@ -40,8 +40,8 @@
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                    "arn:aws:iam::058264198774:role/ec2ssm",
-                    "arn:aws:iam::058264198774:user/yoshi"
+                    "arn:aws:iam::AWS-ACCOUNT-ID:role/ec2ssm",
+                    "arn:aws:iam::AWS-ACCOUNT-ID:user/yoshi"
                     
                 ]
             },
@@ -70,7 +70,7 @@
             "Resource": "*",
             "Condition": {
                 "ArnEquals": {
-                    "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:us-east-2:058264198774:*"
+                    "kms:EncryptionContext:aws:logs:arn": "arn:aws:logs:us-east-2:AWS-ACCOUNT-ID:*"
                 }
             }
         },
@@ -79,8 +79,8 @@
             "Effect": "Allow",
             "Principal": {
                 "AWS": [
-                    "arn:aws:iam::058264198774:role/ec2ssm",
-                    "arn:aws:iam::058264198774:user/yoshi"
+                    "arn:aws:iam::AWS-ACCOUNT-ID:role/ec2ssm",
+                    "arn:aws:iam::AWS-ACCOUNT-ID:user/yoshi"
                 ]
             },
             "Action": [

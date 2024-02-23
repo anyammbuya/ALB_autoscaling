@@ -60,7 +60,7 @@
             "Action": [
                 "kms:Decrypt"
             ],
-            "Resource": "arn:aws:kms:us-east-2:058264198774:alias/ec2-session"
+            "Resource": "arn:aws:kms:us-east-2:AWS-ACCOUNT-ID:alias/ec2-session"
         },
         {
             "Effect": "Allow",
