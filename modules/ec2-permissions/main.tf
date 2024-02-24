@@ -18,15 +18,28 @@ resource "aws_iam_role" "ec2_role" {
   name               = "ec2ssm"
   path               = "/"
   assume_role_policy = data.aws_iam_policy_document.assume_role.json
+  managed_policy_arns =[aws_iam_policy.ssm_policy.arn, aws_iam_policy.ec2_cw_policy.arn]
 }
 
-#get the policy
+#get the policies
 
-resource "aws_iam_policy" "policy" {
-  name        = "ec2-ssm-cloudw-s3"
-  description = "A policy for ec2 to access ssm, cloudwatch and s3"
-  policy      = file("modules/json-policy/ec2-policy-4-ssm-cloudwatch-s3.json")
+resource "aws_iam_policy" "ssm_policy" {
+  name        = "ssmpolicy"
+  description = "A policy for ec2 to access ssm"
+  policy      = file("modules/json-policy/ec2-policy-4-ssm.json")
 }
+
+resource "aws_iam_policy" "ec2_cw_policy" {
+  name        = "cloudw-s3-policy"
+  description = "A policy for ec2 to acces cloudwatch and s3"
+  policy      = file("modules/json-policy/ec2-session-policy-4-cw-s3.json")
+}
+
+/*
+
+#I am taking out this block because it is not compartible with managed_policy_arns
+#argument of aws_iam_role. I did this because i want to attach multiple poicies
+#to the instance profile's role
 
 #Attach role to policy
 
@@ -35,9 +48,11 @@ resource "aws_iam_role_policy_attachment" "custom" {
   policy_arn = aws_iam_policy.policy.arn
 }
 
+*/
+
 #Attach role to an instance profile
 
 resource "aws_iam_instance_profile" "ec2_profile" {
-  //name = "ec2-ssm-profile"
+  name = "ec2-ssm-profile"
   role = aws_iam_role.ec2_role.name
 }

@@ -250,3 +250,6 @@ module "session-manager-settings" {
   cloudwatch_streaming_enabled  = true
   kms_key_id                    = module.zeus_kms.kms_key_id
 }
+
+# The cli command below will rectify issues when error arise with this session-manager-settings module
+# aws ssm delete-document --name SSM-SessionManagerRunShell --region us-east-2 

@@ -44,28 +44,6 @@
                 "ec2messages:SendReply"
             ],
             "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "logs:CreateLogStream",
-                "logs:PutLogEvents",
-                "logs:DescribeLogGroups",
-                "logs:DescribeLogStreams"
-            ],
-            "Resource": "*"
-        },
-        {
-            "Effect": "Allow",
-            "Action": [
-                "kms:Decrypt"
-            ],
-            "Resource": "arn:aws:kms:us-east-2:AWS-ACCOUNT-ID:alias/ec2-session"
-        },
-        {
-            "Effect": "Allow",
-            "Action": "kms:GenerateDataKey",
-            "Resource": "*"
         }
     ]
 }

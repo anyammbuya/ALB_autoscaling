@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: MPL-2.0
 
 terraform {
-/*
+
   cloud {
     organization = "KingstonLtd"
 
@@ -10,7 +10,7 @@ terraform {
       name = "wsp1"
     }
   }
-*/
+
 
   required_providers {
     aws = {
