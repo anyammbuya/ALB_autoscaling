@@ -30,9 +30,9 @@ resource "aws_iam_policy" "ssm_policy" {
 }
 
 resource "aws_iam_policy" "ec2_cw_policy" {
-  name        = "cloudw-s3-policy"
-  description = "A policy for ec2 to acces cloudwatch and s3"
-  policy      = file("modules/json-policy/ec2-session-policy-4-cw-s3.json")
+  name        = "cloudw-policy"
+  description = "A policy for ec2 to acces cloudwatch logs"
+  policy      = file("modules/json-policy/ec2-session-policy-4-cw-logs.json")
 }
 
 /*
