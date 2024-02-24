@@ -3,7 +3,7 @@
 
 
 variable "instance_type" {
-  description = "Type of EC2 instance to use"
+  description = "Type of EC2 instance to yese"
   type        = string
 }
 variable "tags" {
@@ -15,3 +15,9 @@ variable "security_group_ids" {
   description = "Security group IDs for EC2 instances"
   type        = list(string)
 }
+
+variable "instance_profile_arn" {
+  description = "arn of the ec2 instance profile"
+  
+}
+
