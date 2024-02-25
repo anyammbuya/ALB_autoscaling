@@ -1,15 +1,6 @@
 # Copyright (c) HashiCorp, Inc.
 # SPDX-License-Identifier: MPL-2.0
 
-data "terraform_remote_state" "update1" {
-  backend = "remote"
-
-  config = {
-    url = "https://github.com/KingstonLtd/ALB_autoscaling.git"
-    branch = "update1"
-  }
-}
-
 provider "aws" {
   region = var.aws_region
 }
